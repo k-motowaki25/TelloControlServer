@@ -1,0 +1,12 @@
+* {
+    border: none;
+}
+
+QWidget {
+    border: none;
+    /* 他のスタイル定義もここに追加 */
+}
+
+QGraphicsView {
+    border-radius: 5px;
+}

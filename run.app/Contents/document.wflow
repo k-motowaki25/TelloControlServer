@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>523</string>
+	<key>AMApplicationVersion</key>
+	<string>2.10</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>AppleScriptを実行</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>set folderPath to "/path/to/folder"set hostIp to "192.168.11.3"set url0 to "http://192.168.11.5:4747/video"set url1 to "http://192.168.11.2:4747/video"tell application "Terminal"	activate		do script "cd " &amp; folderPath	delay 0.5	do script "python3 monitor.py" in front window	delay 2		activate		-- 画像解析プログラム(xz)	tell application "System Events" to keystroke "t" using {command down}		delay 0.5	do script "cd " &amp; folderPath in front window	delay 0.5	do script "python3 detect.py --pos --min --raw --coord xz --id 0 --ip " &amp; hostIp &amp; " --videourl " &amp; url0 in front window		-- 画像解析プログラム(y)	tell application "System Events" to keystroke "t" using {command down}		delay 0.5	do script "cd " &amp; folderPath in front window	delay 0.5	do script "python3 detect.py --pos --min --raw --coord y --rev --id 1 --ip " &amp; hostIp &amp; " --videourl " &amp; url1 in front window		-- 緊急操作用	tell application "System Events" to keystroke "t" using {command down}		delay 0.5	do script "cd " &amp; folderPath in front window	delay 0.5	do script "python3 client.py" in front window	delay 0.5	do script "operation" in front window	do script "1" in front window		delay 3		-- micon1	activate	tell application "System Events" to keystroke "t" using {command down}		delay 1	do script "ssh suzupro0@zero.local" in front window	delay 1	do script "thz1966suzu" in front window	delay 1	do script "cd sdc" in front window	delay 1	do script "source venv/bin/activate" in front window	delay 1	do script "python3 main.py" in front window		-- micon2	activate	tell application "System Events" to keystroke "t" using {command down}		delay 1	do script "ssh suzupro1@one.local" in front window	delay 1	do script "thz1966suzu" in front window	delay 1	do script "cd sdc" in front window	delay 1	do script "source venv/bin/activate" in front window	delay 1	do script "python3 main.py" in front window		-- micon3	activate	tell application "System Events" to keystroke "t" using {command down}		delay 1	do script "ssh suzupro2@two.local" in front window	delay 1	do script "thz1966suzu" in front window	delay 1	do script "cd sdc" in front window	delay 1	do script "source venv/bin/activate" in front window	delay 1	do script "python3 main.py" in front windowend tell</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>2DB2E9AE-42AC-4710-A387-179AFFA26ECB</string>
+				<key>Keywords</key>
+				<array>
+					<string>実行</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>1C2F96E1-3277-4F52-93C1-F85D4869E8A1</string>
+				<key>UUID</key>
+				<string>F73B029F-D2CA-4F33-8766-CF89FDD8137A</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>1</integer>
+				<key>location</key>
+				<string>229.000000:315.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict/>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.application</string>
+	</dict>
+</dict>
+</plist>

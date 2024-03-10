@@ -1,0 +1,89 @@
+set folderPath to "/path/to/folder"
+set hostIp to "192.168.11.3"
+set url0 to "http://192.168.11.5:4747/video"
+set url1 to "http://192.168.11.2:4747/video"
+
+tell application "Terminal"
+    activate
+
+    do script "cd " & folderPath
+    delay 0.5
+    do script "python3 monitor.py" in front window
+    delay 2
+
+    activate
+    
+    -- 画像解析プログラム(xz)
+    tell application "System Events" to keystroke "t" using {command down}
+
+    delay 0.5
+    do script "cd " & folderPath in front window
+    delay 0.5
+    do script "python3 detect.py --pos --min --raw --coord xz --id 0 --ip " & hostIp & " --videourl " & url0 in front window
+
+    -- 画像解析プログラム(y)
+    tell application "System Events" to keystroke "t" using {command down}
+
+    delay 0.5
+    do script "cd " & folderPath in front window
+    delay 0.5
+    do script "python3 detect.py --pos --min --raw --coord y --rev --id 1 --ip " & hostIp & " --videourl " & url1 in front window
+
+    -- 緊急操作用
+    tell application "System Events" to keystroke "t" using {command down}
+
+    delay 0.5
+    do script "cd " & folderPath in front window
+    delay 0.5
+    do script "python3 client.py" in front window
+    delay 0.5
+    do script "operation" in front window
+    do script "1" in front window
+
+    delay 3
+
+    -- micon1
+    activate
+    tell application "System Events" to keystroke "t" using {command down}
+
+    delay 1
+    do script "ssh suzupro0@zero.local" in front window
+    delay 1
+    do script "thz1966suzu" in front window
+    delay 1
+    do script "cd sdc" in front window
+    delay 1
+    do script "source venv/bin/activate" in front window
+    delay 1
+    do script "python3 main.py" in front window
+
+    -- micon2
+    activate
+    tell application "System Events" to keystroke "t" using {command down}
+
+    delay 1
+    do script "ssh suzupro1@one.local" in front window
+    delay 1
+    do script "thz1966suzu" in front window
+    delay 1
+    do script "cd sdc" in front window
+    delay 1
+    do script "source venv/bin/activate" in front window
+    delay 1
+    do script "python3 main.py" in front window
+
+    -- micon3
+    activate
+    tell application "System Events" to keystroke "t" using {command down}
+
+    delay 1
+    do script "ssh suzupro2@two.local" in front window
+    delay 1
+    do script "thz1966suzu" in front window
+    delay 1
+    do script "cd sdc" in front window
+    delay 1
+    do script "source venv/bin/activate" in front window
+    delay 1
+    do script "python3 main.py" in front window
+end tell
